@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Satori</title>
+</head>
+<body bgcolor= #332d38>
+<!-- Website to display webcomic -->
+    
+    <div class="Top Banner"></div>
+        <!-- Logo -->
+    <div class="Menu"></div>
+    <!-- Buttons: -->
+        <!-- About -->
+        <!-- Archive -->
+        <!-- Links -->
+    <div class="Top Navigation", style="display: flex; width:100%; height:auto;margin-left:37vw">
+        <!-- First -->
+        <input type="image" src="Last.png" onclick="first_page()" class="", style="transform: scaleX(-1);width:5vw; height:auto;"/>
+        <!-- <img src="Last.png" class="", style="transform: scaleX(-1);width:100%; height:auto;">  <!-- if first page -> no previous pages, if last page -> no next pages -->
+        <!-- Previous -->
+        <input type="image" src="Next.png" onclick="previous_page()",class="", style="transform: scaleX(-1);width:5vw; height:auto;"/>
+        <!-- Comic page #x -->
+        <div id="pageNumber">
+            <p id="Pn1", style="color: black;text-align:center;width:3vw; height:auto;font-weight: bolder;">1</p> <!-- font-size: 40px; -->
+        </div>
+        <!-- Next -->
+        <input type="image" src="Next.png" onclick="next_page()" class="", style="width:5vw; height:auto;"/>
+        <!-- Latest -->
+        <input type="image" src="Last.png" onclick="latest_page()" class="", style="width:5vw; height:auto;"/>
+    </div>
+    
+    <div class="Comic">
+        <img src="testestimg.jpg" class="" style="width: 100vw; max-width: 100%; height: auto; ">
+    </div>
+        <!-- Displays Comic page -->
+    <div class="Bottom Navigation"></div>
+        <!-- Same as Top Nav (for now) -->
+                <div class="Top Navigation", style="display: flex; width:100%; height:auto;margin-left: 41vw">
+                <!-- Previous -->
+                        <input type="image" src="Next.png" onclick="previous_page()" class="", style="transform: scaleX(-1);width:5vw; height:auto;"/>
+                        <!-- Comic page #x -->
+                        <div id="pageNumber">
+                            <p id="Pn2" style="color: black;text-align:center;width:3vw; height:auto;font-weight: bolder;">1</p> <!-- font-size: 40px; -->
+                        </div>
+                        <!-- Next -->
+                        <input type="image" src="Next.png" onclick="next_page()" class="", style="width:5vw; height:auto;"/>
+                </div>
+    <div class="Authors notes" style="background-color: #53485c; height: 500px"><p>test</p></div>
+        <!-- Left side = blog/comments -->
+        <!-- Right side = images -->
+    
+    
+    
+    <script> // I have the domain:   satori.ink   to use
+                    /* Todo:
+                    - Authers section
+                    - logo at top
+                    - background wallpaper
+                    
+                    - Buttons glow when hovered above*/
+    var pageN = document.getElementById("Pn1").innerHTML
+    var params = new URLSearchParams(window.location.search);
+    console.log(params.get("page"));
+    if (params.get("page") != null) {
+        var page = Number(params.get("page"));
+    } else {
+        var page = 1; //default page
+    };      
+        
+    document.getElementById("Pn1").innerHTML = page;
+    document.getElementById("Pn2").innerHTML = page;
+    console.log(page);
+        
+    function toPage(n) {
+        let url = window.location.href;
+        console.log(url);
+        url = url.split("?")[0];
+        url += '?page=' + n;
+        window.location.href = url;
+    }
+        
+    function first_page(){
+        page = 1;
+        console.log("frst pge");
+        refresh()
+    }
+    function previous_page(){
+        if (page>1) {
+            page -= 1;
+            console.log("prev pge");
+            refresh()
+        }
+    }
+    function next_page(){
+        page += 1;
+        console.log("next pge");
+        refresh()
+    }
+    function latest_page(){
+        Page = 1
+        console.log("last pge");
+        refresh()
+    }
+    function refresh(){
+        toPage(page);
+        console.log(page)
+        //document.getElementById("Pn1").innerHTML = pageN;
+        //document.getElementById("Pn2").innerHTML = pageN;
+    }
+    
+    
+    </script>
+    
+    
+</body>
+</html>
